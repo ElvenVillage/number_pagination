@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:number_pagination/number_pagination.dart';
+import 'package:number_pagination/page_number_provider.dart';
 
 void main() {
   // Testing the rendering and functionality of the NumberPagination widget
@@ -8,9 +9,12 @@ void main() {
     late int currentPage;
     late NumberPagination numberPagination;
 
+    final pageService = NumberPageService(1);
+
     setUp(() {
       currentPage = 1;
       numberPagination = NumberPagination(
+        pageService: pageService,
         onPageChanged: (page) {
           currentPage = page;
         },

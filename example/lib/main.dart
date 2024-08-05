@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:number_pagination/number_pagination.dart';
+import 'package:number_pagination/page_number_provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,6 +27,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var selectedPageNumber = 3;
 
+  final _pageService = NumberPageService(1);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -40,6 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         NumberPagination(
+          pageService: _pageService,
           onPageChanged: (int pageNumber) {
             //To optimize further, use a package that supports partial updates instead of setState (e.g. riverpod)
             setState(() {

@@ -9,6 +9,7 @@ import 'page_number_provider.dart';
 class NumberPagination extends StatelessWidget {
   /// Creates a NumberPagination
   NumberPagination({
+    required this.pageService,
     required this.onPageChanged,
     required this.pageTotal,
     this.threshold = 10,
@@ -27,6 +28,8 @@ class NumberPagination extends StatelessWidget {
     this.buttonSpacing = 4.0,
     this.groupSpacing = 10.0,
   });
+
+  final NumberPageService pageService;
 
   ///Trigger when page changed
   final Function(int) onPageChanged;
@@ -81,8 +84,6 @@ class NumberPagination extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pageService = NumberPageService(pageInit);
-
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: NumberPageContainer(
