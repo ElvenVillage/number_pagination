@@ -125,13 +125,18 @@ class NumberPagination extends StatelessWidget {
                 builder: (context, child) {
                   final currentPage = pageService.currentPage;
 
-                  final rangeStart = currentPage % threshold == 0
+                  var rangeStart = currentPage % threshold == 0
                       ? currentPage - threshold
                       : (currentPage ~/ threshold) * threshold;
 
-                  final rangeEnd = rangeStart + threshold > pageTotal
+                  var rangeEnd = rangeStart + threshold > pageTotal
                       ? pageTotal
                       : rangeStart + threshold;
+
+                  if (pageTotal > rangeEnd && currentPage == rangeEnd) {
+                    rangeStart++;
+                    rangeEnd++;
+                  }
 
                   return Row(mainAxisSize: MainAxisSize.min, children: [
                     for (var i = rangeStart; i < rangeEnd; i++)
